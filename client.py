@@ -8,14 +8,12 @@ port = 9999
 connection_params = (host, port)
 
 
-def read_wave_file(filename):
+def read_and_send_wave_file(filename):
     """
     :param filename: Название файла, который надо передать
-    :return: биты
     """
     udp_socket = socket(AF_INET, SOCK_DGRAM)
     udp_socket.sendto(b'Accept', connection_params)
-    start = time.time()
     try:
         w = wave.open(filename, 'rb')
         data = w.readframes(4096)
@@ -32,6 +30,7 @@ def read_wave_file(filename):
 
 if __name__ == '__main__':
     if len(sys.argv) == 2:
-        read_wave_file(sys.argv[1])
+        read_and_send_wave_file(sys.argv[1])
     else:
-        print('Укажите навзание файла')
+        print('Необходимо в качестве 2го аргумента передать название файла')
+        print('Например вот так "python client.py tts.wav" ')

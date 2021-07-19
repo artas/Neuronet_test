@@ -1,7 +1,6 @@
 import asyncio
 import wave
 
-
 framerate = 48000
 
 BUFFER = {}
