@@ -32,8 +32,8 @@ class Protocol(asyncio.DatagramProtocol):
             BUFFER.update({addr: []})
         elif data == b'Close':
 
-            self.loop.create_task(save(BUFFER.get(addr), addr))
-            BUFFER.pop(addr)
+            self.loop.create_task(save(BUFFER.pop(addr), addr))
+
         else:
             BUFFER.get(addr).append(data)
 

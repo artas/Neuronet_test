@@ -18,11 +18,11 @@ def read_wave_file(filename):
     start = time.time()
     try:
         w = wave.open(filename, 'rb')
-        data = w.readframes(2048)
+        data = w.readframes(4096)
         while data:
 
             if udp_socket.sendto(data, connection_params):
-                data = w.readframes(2048)
+                data = w.readframes(4096)
                 time.sleep(1/1000)
         w.close()
         udp_socket.sendto(b'Close', connection_params)
